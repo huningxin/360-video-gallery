@@ -10,6 +10,8 @@
     <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
     <script src="components/set-video.js"></script>
+    <script src="https://rawgit.com/oscarmarinmiro/aframe-video-controls/master/dist/aframe-video-controls.min.js"></script>
+
   </head>
   <body>
     <a-scene>
@@ -34,6 +36,7 @@
       </a-assets>
 
       <a-videosphere id="video-360" src="#video" rotation="0 180 0"></a-videosphere>
+      <a-entity video-controls="src:#video"></a-entity>
 
       <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
         <a-entity template="src: #link" data-src="videos/shark.mp4" data-thumb="#shark-thumb"></a-entity>
@@ -44,11 +47,12 @@
       <!-- Camera + cursor. -->
       <a-entity camera look-controls>
         <a-cursor id="cursor"
+          color="yellow"
           animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
           animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
           event-set__1="_event: mouseenter; color: springgreen"
-          event-set__2="_event: mouseleave; color: black"
-          raycaster="objects: .link"></a-cursor>
+          event-set__2="_event: mouseleave; color: yellow">
+        </a-cursor>
       </a-entity>
     </a-scene>
   </body>
