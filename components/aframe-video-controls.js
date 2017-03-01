@@ -140,6 +140,7 @@
 	    // Create icon image (play/pause), different image whether video is playing.
 
 	    this.play_image = document.createElement("a-image");
+	    this.play_image.setAttribute("class", "clickable");
 
 	    if (this.video_el.paused) {
 	      this.play_image.setAttribute("src", self.play_image_src);
