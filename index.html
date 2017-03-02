@@ -16,16 +16,26 @@
   <body>
     <a-scene>
       <a-assets>
-        <video id="video" src="videos/congo.mp4" autoplay loop crossorigin="anonymous"></video>
+	  
+        <video id="video" src="videos/red.mp4" autoplay loop crossorigin="anonymous" controls></video>
 
-        <img id="shark-thumb" crossorigin="anonymous" src="imgs/shark.png">
-        <img id="honor-thumb" crossorigin="anonymous" src="imgs/honor.png">
-        <img id="congo-thumb" crossorigin="anonymous" src="imgs/congo.png">
-
+        <img id="boys-thumb" crossorigin="anonymous" src="imgs/boys.jpg">
+        <img id="dancer-thumb" crossorigin="anonymous" src="imgs/dancer.jpg">
+        <img id="f1-thumb" crossorigin="anonymous" src="imgs/f1.jpg">
+		<img id="icebergs-thumb" crossorigin="anonymous" src="imgs/icebergs.jpg">
+		<img id="tiger-thumb" crossorigin="anonymous" src="imgs/tiger.jpg">
+		<img id="volkswagen-thumb" crossorigin="anonymous" src="imgs/volkswagen.jpg">
+		<img id="space-thumb" crossorigin="anonymous" src="imgs/space.jpg">
+		<img id="elephant-thumb" crossorigin="anonymous" src="imgs/elephant.jpg">
+		<img id="red-thumb" crossorigin="anonymous" src="imgs/red.jpg">
+		<img id="nights-thumb" crossorigin="anonymous" src="imgs/nights.jpg">
+		<img id="pokemon-thumb" crossorigin="anonymous" src="imgs/pokemon.jpg">
+		<img id="assassin-thumb" crossorigin="anonymous" src="imgs/assassin.jpg">
+		
         <!-- Image link template to be reused. -->
         <script id="link" type="text/html">
           <a-entity class="clickable"
-            geometry="primitive: plane; height: 1; width: 1"
+            geometry="primitive: plane; height: 1; width: 2"
             material="shader: flat; src: ${thumb}"
             event-set__1="_event: mousedown; scale: 1 1 1"
             event-set__2="_event: mouseup; scale: 1.2 1.2 1"
@@ -38,10 +48,23 @@
       <a-videosphere id="video-360" src="#video" rotation="0 180 0"></a-videosphere>
       <a-entity video-controls="src:#video"></a-entity>
 
-      <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
-        <a-entity template="src: #link" data-src="videos/shark.mp4" data-thumb="#shark-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="videos/honor.mp4" data-thumb="#honor-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="videos/congo.mp4" data-thumb="#congo-thumb"></a-entity>
+      <a-entity id="links" layout="type: line; margin: 2.4" position="-3.5 1 -5">
+        <a-entity template="src: #link" data-src="videos/boys.mp4" data-thumb="#boys-thumb"></a-entity>
+        <a-entity template="src: #link" data-src="videos/dancer.mp4" data-thumb="#dancer-thumb"></a-entity>
+        <a-entity template="src: #link" data-src="videos/f1.mp4" data-thumb="#f1-thumb"></a-entity>
+		<a-entity template="src: #link" data-src="videos/nights.mp4" data-thumb="#nights-thumb"></a-entity>
+	  </a-entity>
+	  <a-entity id="links" layout="type: line; margin: 2.4" position="-3.5 -0.2 -5">
+		<a-entity template="src: #link" data-src="videos/icebergs.mp4" data-thumb="#icebergs-thumb"></a-entity>
+		<a-entity template="src: #link" data-src="videos/red.mp4" data-thumb="#red-thumb"></a-entity>
+		<a-entity template="src: #link" data-src="videos/volkswagen.mp4" data-thumb="#volkswagen-thumb"></a-entity>
+		<a-entity template="src: #link" data-src="videos/pokemon.mp4" data-thumb="#pokemon-thumb"></a-entity>
+      </a-entity>
+	  <a-entity id="links" layout="type: line; margin: 2.4" position="-3.5 -1.4 -5">
+		<a-entity template="src: #link" data-src="videos/space.mp4" data-thumb="#space-thumb"></a-entity>
+		<a-entity template="src: #link" data-src="videos/elephant.mp4" data-thumb="#elephant-thumb"></a-entity>
+		<a-entity template="src: #link" data-src="videos/tiger.mp4" data-thumb="#tiger-thumb"></a-entity>
+		<a-entity template="src: #link" data-src="videos/assassin.mp4" data-thumb="#assassin-thumb"></a-entity>
       </a-entity>
 
       <!-- Camera + cursor. -->
