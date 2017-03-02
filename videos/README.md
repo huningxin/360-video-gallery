@@ -1,6 +1,7 @@
 ## Placeholder for videos:
 videos/assassin.mp4
 videos/boys.mp4
+videos/background.mp4
 videos/congo.mp4
 videos/dancer.mp4
 videos/elephant.mp4
