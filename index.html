@@ -12,6 +12,7 @@
     <script src="components/set-video.js"></script>
     <script src="components/aframe-video-controls.js"></script>
     <script src="components/aframe-vive-cursor-component.js"></script>
+    <script src="components/home-page.js"></script>
   </head>
   <body>
     <a-scene>
@@ -46,25 +47,28 @@
       </a-assets>
 
       <a-videosphere id="video-360" src="#video" rotation="0 180 0"></a-videosphere>
-      <a-entity video-controls="src:#video"></a-entity>
 
-      <a-entity id="links" layout="type: line; margin: 2.4" position="-3.5 1 -5">
-        <a-entity template="src: #link" data-src="videos/boys.mp4" data-thumb="#boys-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="videos/dancer.mp4" data-thumb="#dancer-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="videos/f1.mp4" data-thumb="#f1-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="videos/nights.mp4" data-thumb="#nights-thumb"></a-entity>
-      </a-entity>
-      <a-entity id="links" layout="type: line; margin: 2.4" position="-3.5 -0.2 -5">
-        <a-entity template="src: #link" data-src="videos/icebergs.mp4" data-thumb="#icebergs-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="videos/red.mp4" data-thumb="#red-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="videos/volkswagen.mp4" data-thumb="#volkswagen-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="videos/pokemon.mp4" data-thumb="#pokemon-thumb"></a-entity>
-      </a-entity>
-      <a-entity id="links" layout="type: line; margin: 2.4" position="-3.5 -1.4 -5">
-        <a-entity template="src: #link" data-src="videos/space.mp4" data-thumb="#space-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="videos/elephant.mp4" data-thumb="#elephant-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="videos/tiger.mp4" data-thumb="#tiger-thumb"></a-entity>
-        <a-entity template="src: #link" data-src="videos/assassin.mp4" data-thumb="#assassin-thumb"></a-entity>
+      <a-entity id="controls" video-controls="src:#video"></a-entity>
+
+      <a-entity id="home-page" home-page>
+        <a-entity id="line1" layout="type: line; margin: 2.4" position="-3.5 1 -5">
+          <a-entity template="src: #link" data-src="videos/boys.mp4" data-thumb="#boys-thumb"></a-entity>
+          <a-entity template="src: #link" data-src="videos/dancer.mp4" data-thumb="#dancer-thumb"></a-entity>
+          <a-entity template="src: #link" data-src="videos/f1.mp4" data-thumb="#f1-thumb"></a-entity>
+          <a-entity template="src: #link" data-src="videos/nights.mp4" data-thumb="#nights-thumb"></a-entity>
+        </a-entity>
+        <a-entity id="line2" layout="type: line; margin: 2.4" position="-3.5 -0.2 -5">
+          <a-entity template="src: #link" data-src="videos/icebergs.mp4" data-thumb="#icebergs-thumb"></a-entity>
+          <a-entity template="src: #link" data-src="videos/red.mp4" data-thumb="#red-thumb"></a-entity>
+          <a-entity template="src: #link" data-src="videos/volkswagen.mp4" data-thumb="#volkswagen-thumb"></a-entity>
+          <a-entity template="src: #link" data-src="videos/pokemon.mp4" data-thumb="#pokemon-thumb"></a-entity>
+        </a-entity>
+        <a-entity id="line3" layout="type: line; margin: 2.4" position="-3.5 -1.4 -5">
+          <a-entity template="src: #link" data-src="videos/space.mp4" data-thumb="#space-thumb"></a-entity>
+          <a-entity template="src: #link" data-src="videos/elephant.mp4" data-thumb="#elephant-thumb"></a-entity>
+          <a-entity template="src: #link" data-src="videos/tiger.mp4" data-thumb="#tiger-thumb"></a-entity>
+          <a-entity template="src: #link" data-src="videos/assassin.mp4" data-thumb="#assassin-thumb"></a-entity>
+        </a-entity>
       </a-entity>
 
       <!-- Camera + cursor. -->
@@ -80,7 +84,7 @@
       </a-entity>
 
       <!-- Controller + cusor. -->
-      <a-entity vive-controls="hand: right;" vive-cursor="radius: 0.0015; objects: .clickable"></a-entity>
+      <a-entity id="vive-controls" vive-controls="hand: right;" vive-cursor="radius: 0.0015; objects: .clickable"></a-entity>
 
     </a-scene>
   </body>

@@ -126,7 +126,7 @@
 
 	    this.current_step = 0.0;
 
-	    this.el.setAttribute("visible", true);
+	    this.el.setAttribute("visible", false);
 
 	    this.video_selector = this.data.src;
 
