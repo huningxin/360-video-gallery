@@ -136,8 +136,13 @@
 
 	    self.play_image_src = document.getElementById("video-play-image") ? "#video-play-image" : "https://res.cloudinary.com/dxbh0pppv/image/upload/c_scale,h_512,q_10/v1471016296/play_wvmogo.png";
 	    self.pause_image_src = document.getElementById("video-pause-image") ? "#video-pause-image" :"https://res.cloudinary.com/dxbh0pppv/image/upload/c_scale,h_512,q_25/v1471016296/pause_ndega5.png";
+			self.back_button_src = document.getElementById("back-button-image") ? "#back-button-image" : "imgs/back-button.png"
 
-	    // Create icon image (play/pause), different image whether video is playing.
+			this.back_button = document.createElement("a-image");
+	    this.back_button.setAttribute("class", "clickable");
+			this.back_button.setAttribute("src", self.back_button_src);
+
+			// Create icon image (play/pause), different image whether video is playing.
 
 	    this.play_image = document.createElement("a-image");
 	    this.play_image.setAttribute("class", "clickable");
@@ -206,6 +211,17 @@
 	        event.preventDefault();
 
 	    });
+
+			this.back_button.addEventListener('click', function (event) {
+          console.log("should back to home.");
+
+					// Prevent propagation upwards (e.g: canvas click)
+
+					event.stopPropagation();
+
+					event.preventDefault();
+
+			});
 
 
 	    window.addEventListener('keyup', function(event) {
@@ -280,9 +296,9 @@
 	    });
 
 	    // Append image icon + info text + bar to component root
-
+  		this.el.appendChild(this.back_button);
 	    this.el.appendChild(this.bar_canvas);
-	    this.el.appendChild(this.play_image);
+      this.el.appendChild(this.play_image);
 	    this.el.appendChild(this.bar);
 
 
@@ -329,6 +345,10 @@
 	  update: function (oldData) {
 
 	    this.position_control_from_camera();
+
+			this.back_button.setAttribute("height", this.data.size/4.0);
+			this.back_button.setAttribute("width", this.data.size/4.0);
+			this.back_button.setAttribute("position", ((-this.data.size/2) * 1.4 - this.data.size/3) + " 0 0");
 
 	    this.bar.setAttribute("height", this.data.size/4.0);
 	    this.bar.setAttribute("width", this.data.size);
