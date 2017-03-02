@@ -220,6 +220,13 @@
           console.log("should back to home.");
 
 					// Prevent propagation upwards (e.g: canvas click)
+					var controls = document.querySelector('#controls');
+			        controls.setAttribute("visible", false);
+			        document.getElementById('video').src = 'videos/background.mp4';
+			        setTimeout(function() {
+			          var home = document.querySelector('#home-page');
+			          home.emit('on');
+			        }, 500);
 
 					event.stopPropagation();
 
