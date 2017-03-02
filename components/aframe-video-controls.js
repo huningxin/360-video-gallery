@@ -175,6 +175,10 @@
 
 	        self.play_image.setAttribute("src", self.pause_image_src);
 
+	        setTimeout(function() {
+	        	self.el.setAttribute("visible", false);
+	        }, 4000);
+
 	    });
 
 	    this.bar_canvas = document.createElement("canvas");
@@ -308,7 +312,7 @@
 
 	        self.position_control_from_camera();
 
-	        this.addEventListener("dblclick", function(){
+	        function showAndHide(){
 
 	            var raycaster = document.querySelector("a-cursor").components.raycaster.raycaster;
 
@@ -331,9 +335,11 @@
 	                }
 	            }
 
-	        });
+	        }
 
+	        this.addEventListener("dblclick", showAndHide);
 
+	        document.querySelector('#vive-controls').addEventListener('trackpaddown', showAndHide);
 	    });
 
 	  },

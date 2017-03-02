@@ -45,6 +45,6 @@ AFRAME.registerComponent('home-page', {
       }
     }
 
-    document.querySelector('#vive-controls').addEventListener('trackpaddown', backToHome);
+    document.querySelector('#vive-controls').addEventListener('menudown', backToHome);
   } 
 });
