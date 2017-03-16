@@ -87,5 +87,16 @@
       <a-entity id="vive-controls" vive-controls="hand: left;" vive-cursor="radius: 0.0015; objects: .clickable"></a-entity>
 
     </a-scene>
+    <script>
+      var scene = document.querySelector('a-scene');
+      function checkAndEnterVR() {
+        if (scene.effect.getVRDisplay() === undefined) {
+          setTimeout(checkAndEnterVR, 500);
+        } else {
+          scene.enterVR();
+        }
+      }
+      setTimeout(checkAndEnterVR, 500);
+    </script>
   </body>
 </html>
