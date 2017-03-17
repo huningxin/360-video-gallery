@@ -222,7 +222,7 @@
 					// Prevent propagation upwards (e.g: canvas click)
 					var controls = document.querySelector('#controls');
 			        controls.setAttribute("visible", false);
-			        document.getElementById('video').src = 'videos/background.mp4';
+			        document.getElementById('video').src = '';
 			        setTimeout(function() {
 			          var home = document.querySelector('#home-page');
 			          home.emit('on');
@@ -364,8 +364,8 @@
 
 	    this.position_control_from_camera();
 
-			this.back_button.setAttribute("height", this.data.size/4.0);
-			this.back_button.setAttribute("width", this.data.size/4.0);
+			this.back_button.setAttribute("height", this.data.size/3.5);
+			this.back_button.setAttribute("width", this.data.size/3.5);
 			this.back_button.setAttribute("position", ((-this.data.size/2) * 1.4 - this.data.size/3) + " 0 0");
 
 	    this.bar.setAttribute("height", this.data.size/4.0);

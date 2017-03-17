@@ -17,8 +17,9 @@
   <body>
     <a-scene>
       <a-assets>
-    
-        <video id="video" src="videos/background.mp4" autoplay loop crossorigin="anonymous" controls></video>
+
+        <video id="video" src="" autoplay loop crossorigin="anonymous" controls></video>
+        <img id="sky-image" crossorigin="anonymous" src="imgs/sky1.jpg">
 
         <img id="boys-thumb" crossorigin="anonymous" src="imgs/boys.jpg">
         <img id="dancer-thumb" crossorigin="anonymous" src="imgs/dancer.jpg">
@@ -49,7 +50,7 @@
       <a-videosphere id="video-360" src="#video" rotation="0 180 0"></a-videosphere>
 
       <a-entity id="controls" video-controls="src:#video"></a-entity>
-
+      <a-sky id="sky" visible="true" src="#sky-image"></a-sky>
       <a-entity id="home-page" home-page>
         <a-entity id="line1" layout="type: line; margin: 2.4" position="-3.5 2 -5">
           <a-entity template="src: #link" data-src="videos/boys.mp4" data-thumb="#boys-thumb"></a-entity>
