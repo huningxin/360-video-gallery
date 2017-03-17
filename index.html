@@ -90,7 +90,7 @@
     <script>
       var scene = document.querySelector('a-scene');
       function checkAndEnterVR() {
-        if (scene.effect.getVRDisplay() === undefined) {
+        if (!scene.hasLoaded || !scene.effect || scene.effect.getVRDisplay() === undefined) {
           setTimeout(checkAndEnterVR, 500);
         } else {
           scene.enterVR();
