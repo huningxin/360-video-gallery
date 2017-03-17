@@ -66493,6 +66493,8 @@ module.exports.Component = registerComponent('cursor', {
     // Attach event listeners.
     canvas.addEventListener('mousedown', bind(this.onMouseDown, this));
     canvas.addEventListener('mouseup', bind(this.onMouseUp, this));
+    cursorEl.addEventListener('gamepadbuttondown', bind(this.onMouseDown, this));
+    cursorEl.addEventListener('gamepadbuttonup', bind(this.onMouseUp, this));
     cursorEl.addEventListener('raycaster-intersection', bind(this.onIntersection, this));
     cursorEl.addEventListener('raycaster-intersection-cleared',
                               bind(this.onIntersectionCleared, this));

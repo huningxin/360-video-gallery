@@ -336,6 +336,11 @@
 	                }
 	                // Else, show at 'distance' from camera
 	                else {
+                        // Don't show if home page is visible.
+                        var home = document.querySelector('#home-page');
+                        if (home.getAttribute('visible') === true) {
+                            return;
+                        }
 	                    self.el.setAttribute("visible", true);
 
 	                    self.position_control_from_camera();
@@ -346,7 +351,7 @@
 
 	        this.addEventListener("dblclick", showAndHide);
 
-	        document.querySelector('#vive-controls').addEventListener('trackpaddown', showAndHide);
+	        this.addEventListener("gamepadbuttondown", showAndHide);
 	    });
 
 	  },

@@ -11,8 +11,8 @@
     <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
     <script src="components/set-video.js"></script>
     <script src="components/aframe-video-controls.js"></script>
-    <script src="components/aframe-vive-cursor-component.js"></script>
     <script src="components/home-page.js"></script>
+    <script src="components/aframe-gamepad-controls.js"></script>
   </head>
   <body>
     <a-scene>
@@ -73,7 +73,7 @@
 
       <!-- Camera + cursor. -->
       <a-entity camera look-controls>
-        <a-cursor id="cursor"
+        <a-cursor gamepad-controls id="cursor"
           color="yellow"
           animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
           animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
@@ -82,9 +82,6 @@
           raycaster="objects: .clickable">
         </a-cursor>
       </a-entity>
-
-      <!-- Controller + cusor. -->
-      <a-entity id="vive-controls" vive-controls="hand: left;" vive-cursor="radius: 0.0015; objects: .clickable"></a-entity>
 
     </a-scene>
     <script>

@@ -18,6 +18,7 @@ AFRAME.registerComponent('home-page', {
       el.appendChild(line1);
       el.appendChild(line2);
       el.appendChild(line3);
+      el.setAttribute('visible', true);
       self.status = 'on';
     });
     el.addEventListener(data.off, function(){
@@ -27,6 +28,7 @@ AFRAME.registerComponent('home-page', {
       el.removeChild(line1);
       el.removeChild(line2);
       el.removeChild(line3);
+      el.setAttribute('visible', false);
       self.status = 'off';
     });
 
@@ -44,7 +46,5 @@ AFRAME.registerComponent('home-page', {
         backToHome();
       }
     }
-
-    document.querySelector('#vive-controls').addEventListener('menudown', backToHome);
   } 
 });
