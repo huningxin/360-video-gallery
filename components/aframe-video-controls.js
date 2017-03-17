@@ -222,7 +222,7 @@
 					// Prevent propagation upwards (e.g: canvas click)
 					var controls = document.querySelector('#controls');
 			        controls.setAttribute("visible", false);
-			        document.getElementById('video').src = 'videos/background.mp4';
+			        document.getElementById('video').src = '';
 			        setTimeout(function() {
 			          var home = document.querySelector('#home-page');
 			          home.emit('on');
