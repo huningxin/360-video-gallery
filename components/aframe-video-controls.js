@@ -216,23 +216,26 @@
 
 	    });
 
-			this.back_button.addEventListener('click', function (event) {
-          console.log("should back to home.");
-
-					// Prevent propagation upwards (e.g: canvas click)
-					var controls = document.querySelector('#controls');
-			        controls.setAttribute("visible", false);
-			        document.getElementById('video').src = '';
-			        setTimeout(function() {
-			          var home = document.querySelector('#home-page');
-			          home.emit('on');
-			        }, 500);
-
-					event.stopPropagation();
-
-					event.preventDefault();
-
+		this.back_button.addEventListener('click', function (event) {
+            // unload the video texture
+    		var scene = document.querySelector('a-scene');
+			scene.systems.material.textureCache.video.then(function(video) {
+				video.videoEl.src = "";
+				video.texture.dispose();
 			});
+
+			// Hide the controls and show the home page.
+			var controls = document.querySelector('#controls');
+	        controls.setAttribute("visible", false);
+	        setTimeout(function() {
+	          var home = document.querySelector('#home-page');
+	          home.emit('on');
+	        }, 500);
+
+			event.stopPropagation();
+
+			event.preventDefault();
+		});
 
 
 	    window.addEventListener('keyup', function(event) {
@@ -529,6 +532,16 @@
 	            }
 
 
+	        } else {
+	        	var ctx = this.context;
+	            ctx.fillStyle = this.data.backgroundColor;
+	            ctx.fillRect(0, 0, this.bar_canvas.width, this.bar_canvas.height);
+	            ctx.font = this.data.timeTextFont;
+	            ctx.fillStyle = "white";
+	            ctx.textAlign = "center";
+	            ctx.fillText('Loading...', this.bar_canvas.width/2, this.bar_canvas.height* 0.65);
+
+	            this.texture.needsUpdate = true;
 	        }
 
 	        // Save this 't' to last_time

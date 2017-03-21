@@ -36,12 +36,17 @@ AFRAME.registerComponent('home-page', {
     });
 
     function backToHome() {
+      var scene = document.querySelector('a-scene');
+      scene.systems.material.textureCache.video.then(function(video) {
+        video.videoEl.src = "";
+        video.texture.dispose();
+      });
       var controls = document.querySelector('#controls');
-        controls.setAttribute("visible", false);
-        document.getElementById('video').src = '';
-        setTimeout(function() {
-          el.emit('on');
-        }, 500);
+      controls.setAttribute("visible", false);
+      document.getElementById('video').src = '';
+      setTimeout(function() {
+        el.emit('on');
+      }, 500);
     }
 
     document.onkeypress = function(event) {
