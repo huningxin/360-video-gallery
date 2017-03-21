@@ -279,6 +279,7 @@
 
 	    this.bar = document.createElement("a-plane");
 	    this.bar.setAttribute("color", "#000");
+	    this.bar.setAttribute("class", "clickable");
 
 	    // On transport bar click, get point clicked, infer % of new pointer, and make video seek to that point
 
