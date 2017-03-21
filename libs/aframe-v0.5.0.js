@@ -66541,6 +66541,11 @@ module.exports.Component = registerComponent('cursor', {
     // If cursor is the only intersected object, ignore the event.
     if (!intersectedEl) { return; }
 
+    if (intersectedEl.hasAttribute('cursor-enabled') &&
+        intersectedEl.getAttribute('cursor-enabled') !== "true") {
+      return;
+    }
+
     // Already intersecting this entity.
     if (this.intersectedEl === intersectedEl) {
       this.intersection = intersection;
@@ -66556,6 +66561,7 @@ module.exports.Component = registerComponent('cursor', {
 
     // Hovering.
     cursorEl.addState(STATES.HOVERING);
+    cursorEl.setAttribute('visible', true);
     intersectedEl.addState(STATES.HOVERED);
     self.twoWayEmit(EVENTS.MOUSEENTER);
 
@@ -66591,6 +66597,7 @@ module.exports.Component = registerComponent('cursor', {
     // No longer hovering (or fusing).
     this.intersectedEl.removeState(STATES.HOVERED);
     cursorEl.removeState(STATES.HOVERING);
+    cursorEl.setAttribute('visible', false);
     cursorEl.removeState(STATES.FUSING);
     this.twoWayEmit(EVENTS.MOUSELEAVE);
 

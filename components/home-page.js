@@ -42,7 +42,7 @@ AFRAME.registerComponent('home-page', {
         video.texture.dispose();
       });
       var controls = document.querySelector('#controls');
-      controls.setAttribute("visible", false);
+      controls.emit('off');
       document.getElementById('video').src = '';
       setTimeout(function() {
         el.emit('on');

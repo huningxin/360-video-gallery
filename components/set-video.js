@@ -23,7 +23,7 @@ AFRAME.registerComponent('set-video', {
         document.getElementById('video').src = data.src;
         home.emit('off');
         setTimeout(function() {
-          controls.setAttribute("visible", true);
+          controls.emit('on');
         }, 500);
     });
   }

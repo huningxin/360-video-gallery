@@ -67,7 +67,9 @@
 	    infoTextTop: { default: DEFAULT_INFO_TEXT_TOP},
 	    infoTextFont: { default: '35px Helvetica Neue'},
 	    statusTextFont: { default: '30px Helvetica Neue'},
-	    timeTextFont: { default: '70px Helvetica Neue'}
+	    timeTextFont: { default: '70px Helvetica Neue'},
+	    on: {type: 'string', default: 'on'},
+    	off: {type: 'string', default: 'off'}
 	  },
 
 	  position_time_from_steps: function(){
@@ -120,6 +122,30 @@
 
 	    var self = this;
 
+	    this.status = 'on';
+    	this.status = 'on';
+    	var data = this.data;
+    	var el = this.el;
+	    this.el.addEventListener(data.on, function(){
+	    	if (self.status !== 'off')
+        		return;
+        	self.el.setAttribute("visible", true);
+        	self.back_button.setAttribute("cursor-enabled", true);
+	        self.play_image.setAttribute("cursor-enabled", true);
+	        self.bar.setAttribute("cursor-enabled", true);
+        	self.status = 'on';
+	    });
+
+	    this.el.addEventListener(data.off, function(){
+	    	if (self.status !== 'on')
+        		return;
+        	self.el.setAttribute("visible", false);
+        	self.back_button.setAttribute("cursor-enabled", false);
+	        self.play_image.setAttribute("cursor-enabled", false);
+	        self.bar.setAttribute("cursor-enabled", false);
+        	self.status = 'off';
+	    });
+
 	    // Next two vars used to control transport bar with keyboard arrows
 
 	    this.bar_steps = 10.0;
@@ -140,12 +166,14 @@
 
 			this.back_button = document.createElement("a-image");
 	    this.back_button.setAttribute("class", "clickable");
+	    this.back_button.setAttribute("cursor-enabled", false);
 			this.back_button.setAttribute("src", self.back_button_src);
 
 			// Create icon image (play/pause), different image whether video is playing.
 
 	    this.play_image = document.createElement("a-image");
 	    this.play_image.setAttribute("class", "clickable");
+	    this.play_image.setAttribute("cursor-enabled", false);
 
 	    if (this.video_el.paused) {
 	      this.play_image.setAttribute("src", self.play_image_src);
@@ -176,7 +204,7 @@
 	        self.play_image.setAttribute("src", self.pause_image_src);
 
 	        setTimeout(function() {
-	        	self.el.setAttribute("visible", false);
+	        	self.el.emit("off");
 	        }, 4000);
 
 	    });
@@ -216,6 +244,7 @@
 
 	    });
 
+	    var self = this;
 		this.back_button.addEventListener('click', function (event) {
             // unload the video texture
     		var scene = document.querySelector('a-scene');
@@ -225,8 +254,7 @@
 			});
 
 			// Hide the controls and show the home page.
-			var controls = document.querySelector('#controls');
-	        controls.setAttribute("visible", false);
+	        self.el.emit("off");
 	        setTimeout(function() {
 	          var home = document.querySelector('#home-page');
 	          home.emit('on');
@@ -280,6 +308,7 @@
 	    this.bar = document.createElement("a-plane");
 	    this.bar.setAttribute("color", "#000");
 	    this.bar.setAttribute("class", "clickable");
+	    this.bar.setAttribute("cursor-enabled", false);
 
 	    // On transport bar click, get point clicked, infer % of new pointer, and make video seek to that point
 
@@ -335,8 +364,8 @@
 	                // If controls are show: hide
 
 
-	                if(self.el.getAttribute("visible")) {
-	                    self.el.setAttribute("visible", false);
+	                if(self.status === "on") {
+	                    self.el.emit("off");
 	                }
 	                // Else, show at 'distance' from camera
 	                else {
@@ -345,7 +374,7 @@
                         if (home.getAttribute('visible') === true) {
                             return;
                         }
-	                    self.el.setAttribute("visible", true);
+	                    self.el.emit("on");
 
 	                    self.position_control_from_camera();
 	                }
