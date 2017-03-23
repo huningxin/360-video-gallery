@@ -571,7 +571,17 @@
 	            ctx.textAlign = "center";
 	            ctx.fillText('Loading...', this.bar_canvas.width/2, this.bar_canvas.height* 0.65);
 
-	            this.texture.needsUpdate = true;
+	            if(this.bar.object3D.children.length > 0) {
+
+	                // If material is not mapped yet to canvas texture...
+
+	                if(this.bar.object3D.children[0].material.map === null) {
+	                    this.bar.object3D.children[0].material = new THREE.MeshBasicMaterial();
+	                    this.bar.object3D.children[0].material.map = this.texture;
+	                }
+
+	                this.texture.needsUpdate = true;
+	            }
 	        }
 
 	        // Save this 't' to last_time
