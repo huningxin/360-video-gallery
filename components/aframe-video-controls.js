@@ -48,8 +48,8 @@
 	  throw new Error('Component attempted to register before AFRAME was available.');
 	}
 
-	var DEFAULT_INFO_TEXT_BOTTOM = 'Double-click outside player to hide or show it.';
-	var DEFAULT_INFO_TEXT_TOP = 'Look+click on play or bar. Space bar and arrows also work.';
+	var DEFAULT_INFO_TEXT_BOTTOM = 'Press controller to hide or show.';
+	var DEFAULT_INFO_TEXT_TOP = 'Gaze+press on play, back or bar.';
 
 	/**
 	 ** Video control component for A-Frame.
