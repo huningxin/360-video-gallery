@@ -134,6 +134,8 @@
 	    // Button state
 	    this.buttons = {};
 
+	    this.gamepads = {};
+
 	    if (!this.getGamepad()) {
 	      console.warn(
 	        'Gamepad #%d not found. Connect controller and press any button to continue.',
@@ -311,19 +313,29 @@
 	   */
 
 	  updateButtonState: function () {
-	    var gamepad = this.getGamepad();
-	    if (this.data.enabled && gamepad) {
+	    var gamepads = this.getGamepads();
+	    if (this.data.enabled && gamepads) {
 
 	      // Fire DOM events for button state changes.
-	      for (var i = 0; i < gamepad.buttons.length; i++) {
-	        if (gamepad.buttons[i].pressed && !this.buttons[i]) {
-	          this.emit(new GamepadButtonEvent('gamepadbuttondown', i, gamepad.buttons[i]));
-	        } else if (!gamepad.buttons[i].pressed && this.buttons[i]) {
-	          this.emit(new GamepadButtonEvent('gamepadbuttonup', i, gamepad.buttons[i]));
-	        }
-	        this.buttons[i] = gamepad.buttons[i].pressed;
-	      }
-
+        for (var j = 0; j < gamepads.length; j++) {
+          if (!gamepads[j]) {
+            this.gamepads[j] = {buttons: {}};
+            continue;
+          }
+          if (!this.gamepads[j]) {
+            this.gamepads[j] = {buttons: {}};
+          }
+          for (var i = 0; i < gamepads[j].buttons.length; i++) {
+            if (gamepads[j].buttons[i].pressed && !this.gamepads[j].buttons[i]) {
+              console.log('gamepadbuttondown: ' + j + ', ' + i);
+              this.emit(new GamepadButtonEvent('gamepadbuttondown', i, gamepads[j].buttons[i]));
+            } else if (!gamepads[j].buttons[i].pressed && this.gamepads[j].buttons[i]) {
+              console.log('gamepadbuttonup: ' + j + ', ' + i);
+              this.emit(new GamepadButtonEvent('gamepadbuttonup', i, gamepads[j].buttons[i]));
+            }
+            this.gamepads[j].buttons[i] = gamepads[j].buttons[i].pressed;
+          }
+		    }
 	    } else if (Object.keys(this.buttons)) {
 	      // Reset state if controls are disabled or controller is lost.
 	      this.buttons = {};
@@ -360,6 +372,10 @@
 	          && proxyControls.getGamepad(this.data.controller);
 	    return proxyGamepad || localGamepad;
 	  },
+
+    getGamepads: function() {
+      return navigator.getGamepads();
+    },
 
 	  /**
 	   * Returns the state of the given button.
