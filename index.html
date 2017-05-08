@@ -13,6 +13,7 @@
     <script src="components/aframe-video-controls.js"></script>
     <script src="components/home-page.js"></script>
     <script src="components/aframe-gamepad-controls.js"></script>
+    <script src="components/aframe-gesture-controls.js"></script>
   </head>
   <body>
     <a-scene>
@@ -74,7 +75,7 @@
 
       <!-- Camera + cursor. -->
       <a-entity camera look-controls>
-        <a-cursor gamepad-controls id="cursor"
+        <a-cursor gamepad-controls gesture id="cursor"
           color="yellow"
           animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
           animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"

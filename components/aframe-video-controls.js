@@ -203,9 +203,9 @@
 
 	        self.play_image.setAttribute("src", self.pause_image_src);
 
-	        setTimeout(function() {
-	        	self.el.emit("off");
-	        }, 4000);
+	        //setTimeout(function() {
+	        //	self.el.emit("off");
+	        //}, 4000);
 
 	    });
 
@@ -352,14 +352,16 @@
 
 	        self.position_control_from_camera();
 
-	        function showAndHide(){
+	        function showAndHide(event){
+
+	        	console.log('showAndHide ' + event.type);
 
 	            var raycaster = document.querySelector("a-cursor").components.raycaster.raycaster;
 
 	            // Double click is outside the player
 	            // (note that for some reason you cannot prevent a dblclick on player from bubbling up (??)
 
-	            if(raycaster.intersectObject(self.el.object3D, true).length == 0){
+	            if(raycaster.intersectObject(self.el.object3D, true).length == 0 && (event.type === "gamepadbuttondown" || event.type === "dblclick")) {
 
 	                // If controls are show: hide
 
@@ -378,6 +380,20 @@
 
 	                    self.position_control_from_camera();
 	                }
+	            } else if (event.type === "handsfound") {
+	            	// Don't show if home page is visible.
+                    var home = document.querySelector('#home-page');
+                    if (home.getAttribute('visible') === true) {
+                        return;
+                    }
+                    self.el.emit("on");
+
+                    self.position_control_from_camera();
+
+	            } else if (event.type === "handsnotfound") {
+	            	if(self.status === "on") {
+	                    self.el.emit("off");
+	                }
 	            }
 
 	        }
@@ -385,6 +401,10 @@
 	        this.addEventListener("dblclick", showAndHide);
 
 	        this.addEventListener("gamepadbuttondown", showAndHide);
+
+	        this.addEventListener("handsfound", showAndHide);
+
+	        this.addEventListener("handsnotfound", showAndHide);
 	    });
 
 	  },
@@ -399,16 +419,16 @@
 
 			this.back_button.setAttribute("height", this.data.size/3.5);
 			this.back_button.setAttribute("width", this.data.size/3.5);
-			this.back_button.setAttribute("position", ((-this.data.size/2) * 1.4 - this.data.size/3) + " 0 0");
+			this.back_button.setAttribute("position", ((-this.data.size/2) * 1.4 - this.data.size/3) + " -0.5 0");
 
 	    this.bar.setAttribute("height", this.data.size/4.0);
 	    this.bar.setAttribute("width", this.data.size);
-	    this.bar.setAttribute("position", "0.0 0.0 0");
+	    this.bar.setAttribute("position", "0.0 -0.5 0");
 
 
 	    this.play_image.setAttribute("height", this.data.size/4.0);
 	    this.play_image.setAttribute("width", this.data.size/4.0);
-	    this.play_image.setAttribute("position", ((-this.data.size/2.0) * 1.4) + " 0 0");
+	    this.play_image.setAttribute("position", ((-this.data.size/2.0) * 1.4) + " -0.5 0");
 
 
 	  },
