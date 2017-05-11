@@ -20,7 +20,7 @@ AFRAME.registerComponent('gesture', {
       this.side = side;
     };
 
-    if (this.vrDisplay) {
+    if (this.vrDisplay && this.vrDisplay.getHandPositions) {
       var hands = this.vrDisplay.getHandPositions();
 
       if (this.foundHands === false && hands.length > 0) {
